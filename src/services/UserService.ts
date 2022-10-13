@@ -1,9 +1,9 @@
 import { NUser } from '../interfaces';
-import generateToken from '../middlewares/UserTokenValidation';
+/* import generateToken from '../middlewares/UserTokenValidation'; */
 import connection from '../models/connection';
 import UserModel from '../models/UserModel';
 
-export default class ProductService {
+export default class UserService {
   model: UserModel;
 
   constructor() {
@@ -15,8 +15,10 @@ export default class ProductService {
     const mensagem = 'Usuário não Pôde ser criado';
     if (!register) { 
       throw new Error(mensagem); 
-    } 
-    const token = generateToken(user);
+    }
+    const token = { token: register };
+    /* const token = generateToken(user);
+    return token; */
     return token;
   }
 }
