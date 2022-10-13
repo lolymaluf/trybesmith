@@ -4,3 +4,12 @@ export interface NProduct {
   amount: string,
   orderId?: number,
 }
+
+export interface NUser {
+  id?: number,
+  username: string,
+  classe: string,
+  level: number,
+  password: string,
+/*   token?: string, */
+}
