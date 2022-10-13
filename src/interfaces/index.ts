@@ -13,3 +13,9 @@ export interface NUser {
   password: string,
 /*   token?: string, */
 }
+
+export interface NOrder {
+  id?: number,
+  userId: number,
+  productsIds: number
+}
