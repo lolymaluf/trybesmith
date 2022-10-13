@@ -13,4 +13,9 @@ export default class ProductService {
     const register = await this.model.registerProducts(product);
     return register;
   }
+
+  async ListAllProducts(): Promise<NProduct[]> {
+    const products = await this.model.listAllProducts();
+    return products;
+  }
 }

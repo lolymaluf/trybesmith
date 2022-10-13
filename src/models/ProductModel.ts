@@ -1,4 +1,4 @@
-import { Pool, ResultSetHeader } from 'mysql2/promise';
+import { Pool, ResultSetHeader, RowDataPacket } from 'mysql2/promise';
 import { NProduct } from '../interfaces';
 
 export default class ProductModel {
@@ -8,6 +8,8 @@ export default class ProductModel {
     this.connection = connect;
   }
 
+  // Nao tem o promise e fica dentro do parametro porque estou recebendo informacoes
+  
   async registerProducts(product: NProduct) {
     const { name, amount } = product;
     const [register] = await this
@@ -17,5 +19,13 @@ export default class ProductModel {
       [name, amount],
     );
     return { id: register.insertId, name, amount };
+  }
+
+  // Promise pq é assíncrono e esta fora do parametro 
+
+  async listAllProducts(): Promise<NProduct[]> {
+    const [products] = await this
+      .connection.execute<NProduct[] & RowDataPacket[]>('SELECT * FROM Trybesmith.Products');
+    return products;
   }
 }

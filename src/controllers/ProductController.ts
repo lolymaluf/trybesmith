@@ -15,4 +15,9 @@ export default class ProductController {
       .RegisterProducts(product);
     res.status(201).json(register);
   }
+
+  async listAllProducts(req: Request, res: Response) {
+    const products = await this.service.ListAllProducts();
+    res.status(200).json(products);
+  }
 }
